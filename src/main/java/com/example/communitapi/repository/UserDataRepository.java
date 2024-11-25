@@ -12,7 +12,7 @@ public interface UserDataRepository {
 
     Optional<List<UserData>> getAll();
 
-    Optional<UserData> update(UserData userData);
+    UserData update(UserData userData);
 
     Optional<UserData> getUserByEmail(String email);
 
@@ -22,5 +22,7 @@ public interface UserDataRepository {
 
     void delete(long id);
 
-    Optional<UserData> save(UserData userData);
+    UserData save(UserData userData);
+
+    UserData findOrSave(UserData applicant);
 }

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class PersonRepositoryImpl implements WorkerRepository {
+public class WorkerRepositoryImpl implements WorkerRepository {
     @Override
     public Optional<Worker> findById(long id) {
         return Optional.empty();

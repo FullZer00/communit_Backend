@@ -15,9 +15,9 @@ public interface ClientRepository {
 
     Optional<List<Client>> findAllByFullName(String fullName);
 
-    void save(Client client);
+    Client save(Client client);
 
-    void update(Long id, Client client);
+    Client update(Long id, Client client);
 
     void delete(Long id);
 }

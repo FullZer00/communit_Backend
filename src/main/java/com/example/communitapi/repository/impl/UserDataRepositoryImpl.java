@@ -23,8 +23,8 @@ public class UserDataRepositoryImpl implements UserDataRepository {
     }
 
     @Override
-    public Optional<UserData> update(UserData userData) {
-        return Optional.empty();
+    public UserData update(UserData userData) {
+        return null;
     }
 
     @Override
@@ -48,7 +48,12 @@ public class UserDataRepositoryImpl implements UserDataRepository {
     }
 
     @Override
-    public Optional<UserData> save(UserData userData) {
-        return Optional.empty();
+    public UserData save(UserData userData) {
+        return null;
+    }
+
+    @Override
+    public UserData findOrSave(UserData applicant) {
+        return null;
     }
 }
