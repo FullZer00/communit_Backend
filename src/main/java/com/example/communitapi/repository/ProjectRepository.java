@@ -12,11 +12,11 @@ public interface ProjectRepository {
 
     Optional<List<Project>> findAllByClientId(long clientId);
 
-    Optional<List<Project>> findAllByPersonId(long personId);
+    Optional<List<Project>> findAllByWorkerId(long personId);
 
-    void save(Project project);
+    Project save(Project project);
 
-    void update(long id, Project project);
+    Project update(long id, Project project);
 
     void delete(long id);
 }

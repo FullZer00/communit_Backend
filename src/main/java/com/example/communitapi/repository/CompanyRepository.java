@@ -13,7 +13,7 @@ public interface CompanyRepository {
 
     Optional<List<Company>> findByName(String name);
 
-    Optional<Company> save(Company company);
+    Company save(Company company);
 
     void delete(Company company);
 

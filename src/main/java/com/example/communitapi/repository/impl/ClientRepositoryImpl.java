@@ -30,7 +30,7 @@ public class ClientRepositoryImpl implements ClientRepository {
                                ud.*,
                                com.name as company_name
                         FROM communit.clients c
-                                 inner join communit.user_data ud on c.user_data_id = ud.id
+                                 inner join communit.user_data_view ud on c.user_data_id = ud.user_data_id
                                  inner join communit.companies com on c.company_id = com.id
                         WHERE c.id = ?;
             """;
@@ -40,19 +40,9 @@ public class ClientRepositoryImpl implements ClientRepository {
                     ud.*,
                     com.name as company_name
              FROM communit.clients c
-                      inner join communit.user_data ud on c.user_data_id = ud.id
+                      inner join communit.user_data_view ud on c.user_data_id = ud.user_data_id
                       inner join communit.companies com on c.company_id = com.id
              WHERE ud.email = ?;
-            """;
-
-    protected final String FIND_BY_FULL_NAME_CLIENTS = """
-            SELECT c.id as id,
-                   ud.*,
-                   com.name as company_name
-            FROM communit.clients c
-                     inner join communit.user_data ud on c.user_data_id = ud.id
-                     inner join communit.companies com on c.company_id = com.id
-            WHERE (ud.surname || ' ' || ud.first_name || ' ' || COALESCE(ud.patronymic, '')) like '%' || ? || '%';
             """;
 
     private final String FIND_ALL_CLIENTS = """
@@ -66,14 +56,14 @@ public class ClientRepositoryImpl implements ClientRepository {
 
     private final String UPDATE_CLIENT = """
             UPDATE communit.clients c
-            SET c.user_data_id = ?,
-                c.company_id = ?
+            SET user_data_id = ?,
+                company_id = ?
             WHERE C.id = ?;
             """;
 
     private final String CREATE_CLIENT = """
             INSERT INTO communit.clients (user_data_id,company_id)
-            values (?, ?, ?);
+            values (?, ?);
             """;
 
     @Override
@@ -157,7 +147,7 @@ public class ClientRepositoryImpl implements ClientRepository {
         String updatingError = "Error while updating client.";
         try {
             Connection connection = dataSourceConfig.getConnection();
-            UserData userData = userDataRepository.update(client.getApplicant());;
+            UserData userData = userDataRepository.update(client.getApplicant());
             PreparedStatement statement = connection.prepareStatement(UPDATE_CLIENT);
             statement.setLong(1, userData.getId());
             statement.setLong(2, client.getCompany().getId());

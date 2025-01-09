@@ -6,4 +6,8 @@ public class ResourceMappingException extends RuntimeException{
         super(message);
     }
 
+    public ResourceMappingException(Exception ex) {
+        super(ex);
+    }
+
 }
