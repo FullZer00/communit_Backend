@@ -4,9 +4,11 @@ import com.example.communitapi.web.security.JwtTokenFilter;
 import com.example.communitapi.web.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -20,8 +22,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__(@Lazy))
 public class ApplicationConfig {
+
+    @Value("${api.path}")
+    private String apiPath;
 
     private final JwtTokenProvider jwtTokenProvider;
 
@@ -55,8 +60,8 @@ public class ApplicationConfig {
                             }));
                 })
                 .authorizeHttpRequests(authorizeRequest -> {
-                    authorizeRequest.requestMatchers("${api.path}/auth/**").permitAll()
-                            .requestMatchers("${api.path}/client/**").hasRole("CLIENT")
+                    authorizeRequest.requestMatchers(apiPath  + "/auth/**").permitAll()
+                            .requestMatchers(apiPath+ "/client/**").hasRole("CLIENT")
                             .anyRequest().authenticated();
                 })
                 .anonymous(AbstractHttpConfigurer::disable)
