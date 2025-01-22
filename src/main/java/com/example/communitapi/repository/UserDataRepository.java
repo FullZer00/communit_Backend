@@ -14,9 +14,11 @@ public interface UserDataRepository {
 
     UserData update(UserData userData);
 
+    void updatePassword(String newPassword, String newSalt, long id);
+
     Optional<UserData> getUserByEmail(String email);
 
-    Optional<List<UserData>> getByRole(Role role);
+    Optional<List<UserData>> getByRole(String roleName);
 
     void delete(UserData userData);
 

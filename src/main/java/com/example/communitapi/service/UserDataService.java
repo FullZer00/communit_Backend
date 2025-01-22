@@ -14,7 +14,7 @@ public interface UserDataService {
 
     List<UserData> getAllUsers();
 
-    List<UserData> getUsersByRole(Role role);
+    List<UserData> getUsersByRole(String roleName);
 
     UserData createUser(UserData userData);
 

@@ -1,5 +1,6 @@
 package com.example.communitapi.repository.mappers;
 
+import com.example.communitapi.entities.client.Client;
 import com.example.communitapi.entities.company.Company;
 import com.example.communitapi.entities.userData.UserData;
 import com.example.communitapi.web.dto.client.ClientDto;
@@ -11,9 +12,9 @@ import java.util.List;
 
 public class ClientRowMapper {
 
-    public static ClientDto mapRow(ResultSet rs) throws SQLException {
+    public static Client mapRow(ResultSet rs) throws SQLException {
         if (rs.next()) {
-            ClientDto client = new ClientDto();
+            Client client = new Client();
             client.setId(rs.getLong("id"));
 
             Company company = new Company();
@@ -35,10 +36,10 @@ public class ClientRowMapper {
         return null;
     }
 
-    public static List<ClientDto> mapRows(ResultSet rs) throws SQLException {
-        List<ClientDto> clients = new ArrayList<>();
+    public static List<Client> mapRows(ResultSet rs) throws SQLException {
+        List<Client> clients = new ArrayList<>();
         while (rs.next()) {
-            ClientDto client = mapRow(rs);
+            Client client = mapRow(rs);
             clients.add(client);
         }
 

@@ -70,9 +70,9 @@ public class WorkerServiceImpl implements WorkerService {
     }
 
     @Override
-    public Worker insertWorkerRole(long userId, Role role) {
-        workerRepository.insertWorkerRole(userId, role);
-        return workerRepository.findById(userId)
+    public Worker insertWorkerRole(long workerId, Role role) {
+        workerRepository.insertWorkerRole(workerId, role.getId());
+        return workerRepository.findById(workerId)
                 .orElseThrow(() -> new ResourceNotFoundException("Not found worker"));
     }
 

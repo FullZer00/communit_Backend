@@ -70,7 +70,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     public Optional<Client> findById(Long id) {
         try {
             Connection connection = dataSourceConfig.getConnection();
-            PreparedStatement statement = connection.prepareStatement(FIND_BY_ID_CLIENT);
+            statement statement = connection.prepareStatement(FIND_BY_ID_CLIENT);
             statement.setLong(1, id);
             try (ResultSet rs = statement.executeQuery()) {
                 return Optional.ofNullable(ClientRowMapper.mapRow(rs));
@@ -84,7 +84,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     public Optional<List<Client>> findAll() {
         try {
             Connection connection = dataSourceConfig.getConnection();
-            PreparedStatement statement = connection.prepareStatement(FIND_ALL_CLIENTS);
+            statement statement = connection.prepareStatement(FIND_ALL_CLIENTS);
             try (ResultSet rs = statement.executeQuery()) {
                 return Optional.of(ClientRowMapper.mapRows(rs));
             }

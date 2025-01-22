@@ -14,6 +14,7 @@ public class UserData {
     private String email;
     private String phone;
     private String password;
+    private String saltPassword;
     private List<Role> roles;
 
     public String getFullName() {

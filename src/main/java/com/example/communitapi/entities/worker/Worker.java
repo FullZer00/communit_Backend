@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 public class Worker {
     private long id;
+    private long userDataId;
     private UserData userData;
     private String passportSeria;
     private String passportNumber;

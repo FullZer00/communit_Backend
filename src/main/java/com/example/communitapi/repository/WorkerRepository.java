@@ -18,11 +18,11 @@ public interface WorkerRepository {
 
     Optional<List<Worker>> findAllByProjectId(long projectId);
 
-    void save(Worker worker);
+    Worker save(Worker worker);
 
     void update(Worker worker);
 
-    void insertWorkerRole(long userId, Role role);
+    void insertWorkerRole(long userId, long roleId);
 
     void delete(long id);
 }

@@ -140,6 +140,7 @@ public class ProjectRepositoryImpl implements ProjectRepository {
                     ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setLong(1, workerId);
             try (ResultSet rs = preparedStatement.executeQuery()) {
+                rs.next();
                 return Optional.of(ProjectRowMapper.mapRows(rs));
             }
         } catch (SQLException e) {
@@ -150,14 +151,7 @@ public class ProjectRepositoryImpl implements ProjectRepository {
     @Override
     public Project save(Project project) {
         try {
-            Connection connection = dataSourceConfig.getConnection();
-            PreparedStatement statement = connection.prepareStatement(CREATE,
-                    PreparedStatement.RETURN_GENERATED_KEYS);
-            statement.setString(1, project.getName());
-            statement.setString(2, project.getDescription());
-            statement.setString(3, project.getLocation());
-            statement.setLong(4, project.getCompany().getId());
-            statement.setLong(5, project.getClient().getId());
+            PreparedStatement statement = getPreparedStatement(project);
             statement.executeUpdate();
             try (ResultSet rs = statement.getGeneratedKeys()) {
                 project.setId(rs.getLong(1));
@@ -166,6 +160,18 @@ public class ProjectRepositoryImpl implements ProjectRepository {
         } catch (SQLException e) {
             throw new ResourceMappingException(e.getMessage());
         }
+    }
+
+    private PreparedStatement getPreparedStatement(Project project) throws SQLException {
+        Connection connection = dataSourceConfig.getConnection();
+        PreparedStatement statement = connection.prepareStatement(CREATE,
+                PreparedStatement.RETURN_GENERATED_KEYS);
+        statement.setString(1, project.getName());
+        statement.setString(2, project.getDescription());
+        statement.setString(3, project.getLocation());
+        statement.setLong(4, project.getCompany().getId());
+        statement.setLong(5, project.getClient().getId());
+        return statement;
     }
 
     @Override

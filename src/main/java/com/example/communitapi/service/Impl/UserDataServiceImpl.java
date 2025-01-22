@@ -40,8 +40,8 @@ public class UserDataServiceImpl implements UserDataService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<UserData> getUsersByRole(Role role) {
-        return userDataRepository.getByRole(role)
+    public List<UserData> getUsersByRole(String roleName) {
+        return userDataRepository.getByRole(roleName)
                 .orElseThrow(() -> new ResourceNotFoundException("Users not found"));
     }
 
