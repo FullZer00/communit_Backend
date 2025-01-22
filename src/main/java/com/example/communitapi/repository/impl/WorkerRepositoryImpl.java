@@ -3,7 +3,6 @@ package com.example.communitapi.repository.impl;
 import com.example.communitapi.entities.exceptions.ResourceMappingException;
 import com.example.communitapi.entities.exceptions.ResourceNotFoundException;
 import com.example.communitapi.entities.worker.Worker;
-import com.example.communitapi.entities.role.Role;
 import com.example.communitapi.repository.DataSourceConfig;
 import com.example.communitapi.repository.WorkerRepository;
 import com.example.communitapi.repository.mappers.WorkerRowMapper;
@@ -11,7 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
-import java.sql.statement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -21,7 +20,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class WorkerRepositoryImpl implements WorkerRepository {
 
-    private static DataSourceConfig dataSourceConfig;
+    private final DataSourceConfig dataSourceConfig;
 
     private final String SELECT_QUERY = """
             select
