@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("${api.path}/workers")
 @RequiredArgsConstructor
@@ -25,6 +27,20 @@ public class WorkerController {
     @GetMapping("/{id}")
     public WorkerDto getById(@PathVariable long id) {
         Worker worker = workerService.getById(id);
+        return workerMapper.toDto(worker);
+    }
+
+    @GetMapping
+    public List<WorkerDto> getAll() {
+        List<Worker> workers = workerService.getAll();
+
+        return workerMapper.toDto(workers);
+    }
+
+    @GetMapping("/email")
+    public WorkerDto getByEmail(@RequestParam String email) {
+        Worker worker = workerService.getByEmail(email);
+
         return workerMapper.toDto(worker);
     }
 

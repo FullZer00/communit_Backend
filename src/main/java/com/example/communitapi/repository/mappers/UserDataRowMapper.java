@@ -11,29 +11,23 @@ import java.util.List;
 
 @AllArgsConstructor
 public class UserDataRowMapper {
-
-    private static ResultSetHelper rsHelper;
-
     public static UserData mapRow(ResultSet rs) throws SQLException {
-        if (rs.next()) {
-            UserData userData = new UserData();
-            userData.setId(rsHelper.getLongValue(rs,"id_user_data"));
-            userData.setSurname(rsHelper.getStringValue(rs,"surname_user_data"));
-            userData.setFirstName(rsHelper.getStringValue(rs,"first_name_user_data"));
-            userData.setPatronymic(rsHelper.getStringValue(rs,"patronymic_user_data"));
-            userData.setPhone(rsHelper.getStringValue(rs,"phone_user_data"));
-            userData.setEmail(rsHelper.getStringValue(rs,"email_user_data"));
-            userData.setPassword(rsHelper.getStringValue(rs,"password_user_data"));
-            userData.setSaltPassword(rsHelper.getStringValue(rs, "salt_password_user_data"));
+        UserData userData = new UserData();
+        userData.setId(ResultSetHelper.getLongValue(rs, "id_user_data"));
+        userData.setSurname(ResultSetHelper.getStringValue(rs, "surname_user_data"));
+        userData.setFirstName(ResultSetHelper.getStringValue(rs, "first_name_user_data"));
+        userData.setPatronymic(ResultSetHelper.getStringValue(rs, "patronymic_user_data"));
+        userData.setPhone(ResultSetHelper.getStringValue(rs, "phone_user_data"));
+        userData.setEmail(ResultSetHelper.getStringValue(rs, "email_user_data"));
+        userData.setPassword(ResultSetHelper.getStringValue(rs, "password_user_data"));
+        userData.setSaltPassword(ResultSetHelper.getStringValue(rs, "salt_password_user_data"));
 
-            return userData;
-        }
-
-        return null;
+        return userData;
     }
 
     public static List<UserData> mapRows(ResultSet rs) throws SQLException {
         List<UserData> userDataList = new ArrayList<>();
+        rs.beforeFirst();
         while (rs.next()) {
             UserData userData = mapRow(rs);
             userDataList.add(userData);

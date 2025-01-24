@@ -27,11 +27,11 @@ public class JwtTokenProvider {
 
     private final JwtProperties jwtProperties;
 
-    private JwtUserDetailService userDetailsService;
+    private final JwtUserDetailService userDetailsService;
     private final UserDataService userDataService;
     private SecretKey key;
 
-    private class Log {
+    private static class Log {
         public void error(String msg, Exception ex) {
             System.out.println("Заглушка ошибки " + msg + ex.getMessage());
         }

@@ -18,7 +18,9 @@ public class WorkerDto {
 
     @NotNull(message = "Applicant must be not null.",
             groups = {OnUpdate.class, OnCreate.class})
-    private UserData user_data;
+    private UserData userData;
+
+    private long userDataId;
 
     @NotNull(message = "Passport seria must be not null.",
             groups = {OnUpdate.class, OnCreate.class})

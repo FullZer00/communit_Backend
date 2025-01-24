@@ -73,7 +73,8 @@ public class ClientRepositoryImpl implements ClientRepository {
             PreparedStatement statement = connection.prepareStatement(FIND_BY_ID_CLIENT);
             statement.setLong(1, id);
             try (ResultSet rs = statement.executeQuery()) {
-                return Optional.ofNullable(ClientRowMapper.mapRow(rs));
+                rs.next();
+                return Optional.of(ClientRowMapper.mapRow(rs));
             }
         } catch (SQLException ex) {
             throw new ResourceMappingException("Error while finding client by id.");
@@ -86,6 +87,7 @@ public class ClientRepositoryImpl implements ClientRepository {
             Connection connection = dataSourceConfig.getConnection();
             PreparedStatement statement = connection.prepareStatement(FIND_ALL_CLIENTS);
             try (ResultSet rs = statement.executeQuery()) {
+                rs.next();
                 return Optional.of(ClientRowMapper.mapRows(rs));
             }
         } catch (SQLException ex) {
@@ -100,6 +102,7 @@ public class ClientRepositoryImpl implements ClientRepository {
             PreparedStatement statement = connection.prepareStatement(FIND_BY_EMAIL_CLIENT);
             statement.setString(1, email);
             try (ResultSet rs = statement.executeQuery()) {
+                rs.next();
                 return Optional.ofNullable(ClientRowMapper.mapRow(rs));
             }
         } catch (SQLException ex) {

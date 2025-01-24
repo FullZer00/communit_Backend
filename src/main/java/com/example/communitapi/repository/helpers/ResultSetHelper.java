@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class ResultSetHelper {
 
-    public String getStringValue(ResultSet resultSet, String nameField) {
+    public static String getStringValue(ResultSet resultSet, String nameField) {
         try {
             String value = resultSet.getString(nameField);
             if (value.isEmpty()) return "";
@@ -17,7 +17,7 @@ public class ResultSetHelper {
         }
     }
 
-    public Long getLongValue(ResultSet resultSet, String nameField) {
+    public static Long getLongValue(ResultSet resultSet, String nameField) {
         try {
             return resultSet.getLong(nameField);
         } catch (SQLException e) {

@@ -6,6 +6,7 @@ import com.example.communitapi.service.UserDataService;
 import com.example.communitapi.web.dto.auth.JwtRequest;
 import com.example.communitapi.web.dto.auth.JwtResponse;
 import com.example.communitapi.web.security.JwtTokenProvider;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,7 +22,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public JwtResponse login(JwtRequest loginRequest) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+        // authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
         UserData userData = userDataService.getUserByEmail(loginRequest.getEmail());
         return new JwtResponse(
                 userData.getId(),

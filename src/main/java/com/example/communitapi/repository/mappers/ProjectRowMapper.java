@@ -15,28 +15,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProjectRowMapper {
 
-    static ResultSetHelper rsHelper;
-
     public static Project mapRow(ResultSet rs) throws SQLException {
         Project project = new Project();
-        project.setId(rsHelper.getLongValue(rs, "id_project"));
-        project.setName(rsHelper.getStringValue(rs, "name_project"));
-        project.setDescription(rsHelper.getStringValue(rs, "description_project"));
-        project.setLocation(rsHelper.getStringValue(rs, "location_project"));
+        project.setId(ResultSetHelper.getLongValue(rs, "id_project"));
+        project.setName(ResultSetHelper.getStringValue(rs, "name_project"));
+        project.setDescription(ResultSetHelper.getStringValue(rs, "description_project"));
+        project.setLocation(ResultSetHelper.getStringValue(rs, "location_project"));
 
         UserData applicant = new UserData();
-        applicant.setSurname(rsHelper.getStringValue(rs, "surname_client_data"));
-        applicant.setFirstName(rsHelper.getStringValue(rs,"first_name_client_data"));
-        applicant.setPatronymic(rsHelper.getStringValue(rs, "patronymic_client_data"));
+        applicant.setSurname(ResultSetHelper.getStringValue(rs, "surname_client_data"));
+        applicant.setFirstName(ResultSetHelper.getStringValue(rs,"first_name_client_data"));
+        applicant.setPatronymic(ResultSetHelper.getStringValue(rs, "patronymic_client_data"));
 
         Client client = new Client();
         client.setApplicant(applicant);
-        client.setId(rsHelper.getLongValue(rs, "id_client"));
+        client.setId(ResultSetHelper.getLongValue(rs, "id_client"));
         project.setClient(client);
 
         Company company = new Company();
-        company.setId(rsHelper.getLongValue(rs, "id_company"));
-        company.setName(rsHelper.getStringValue(rs, "name_company"));
+        company.setId(ResultSetHelper.getLongValue(rs, "id_company"));
+        company.setName(ResultSetHelper.getStringValue(rs, "name_company"));
         project.setCompany(company);
 
         return project;
@@ -44,6 +42,7 @@ public class ProjectRowMapper {
 
     public static List<Project> mapRows(ResultSet rs) throws SQLException {
         List<Project> projects = new ArrayList<>();
+        rs.beforeFirst();
         while(rs.next()) {
             Project project = mapRow(rs);
             projects.add(project);

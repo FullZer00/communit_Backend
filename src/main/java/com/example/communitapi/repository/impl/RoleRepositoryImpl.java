@@ -6,6 +6,7 @@ import com.example.communitapi.repository.DataSourceConfig;
 import com.example.communitapi.repository.RoleRepository;
 import com.example.communitapi.repository.mappers.RoleRowMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 @RequiredArgsConstructor
 public class RoleRepositoryImpl implements RoleRepository {
 
@@ -63,6 +65,11 @@ public class RoleRepositoryImpl implements RoleRepository {
             delete from roles where id = ?
             """;
 
+    private final String FIND_BY_USER_DATA_ID = SELECT_QUERY + """
+            inner join users_roles ur on ur.role_id = r.id
+            where ur.user_id = ?;
+            """;
+
     @Override
     public Optional<Role> findById(long id) {
         try {
@@ -71,7 +78,8 @@ public class RoleRepositoryImpl implements RoleRepository {
             preparedStatement.setLong(1, id);
 
             try (ResultSet rs = preparedStatement.executeQuery()) {
-                return Optional.ofNullable(RoleRowMapper.mapRow(rs));
+                rs.next();
+                return Optional.of((Role) RoleRowMapper.mapRow(rs));
             }
         }
         catch (SQLException e) {
@@ -87,7 +95,8 @@ public class RoleRepositoryImpl implements RoleRepository {
             preparedStatement.setString(1, name);
 
             try (ResultSet rs = preparedStatement.executeQuery()) {
-                return Optional.ofNullable(RoleRowMapper.mapRow(rs));
+                rs.next();
+                return Optional.of(RoleRowMapper.mapRow(rs));
             }
         }
         catch (SQLException e) {
@@ -100,6 +109,23 @@ public class RoleRepositoryImpl implements RoleRepository {
         try {
             Connection connection = dataSourceConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL);
+
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                return Optional.of(RoleRowMapper.mapRows(rs));
+            }
+        }
+        catch (SQLException e) {
+            throw new ResourceMappingException(e.getMessage());
+        }
+    }
+
+    @Override
+    public Optional<List<Role>> findByUserDataId(long userDataId) {
+        try {
+            Connection connection = dataSourceConfig.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_USER_DATA_ID);
+
+            preparedStatement.setLong(1, userDataId);
 
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 return Optional.of(RoleRowMapper.mapRows(rs));
@@ -166,6 +192,7 @@ public class RoleRepositoryImpl implements RoleRepository {
             PreparedStatement statement = connection.prepareStatement(CHECK_ROLE_NAME);
             statement.setString(1, roleName);
             try (ResultSet rs = statement.executeQuery()) {
+                rs.next();
                 return rs.getBoolean(1);
             }
 

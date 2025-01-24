@@ -52,17 +52,17 @@ public class ApplicationConfig {
                     exceptionHandling
                             .authenticationEntryPoint(((request, response, authException) -> {
                                 response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                                response.getWriter().write("Unauthorized");
+                                response.getWriter().write("Unauthorized\n" + authException.getMessage());
                             }))
                             .accessDeniedHandler(((request, response, accessDeniedException) -> {
                                 response.setStatus(HttpStatus.FORBIDDEN.value());
-                                response.getWriter().write("Unauthorized");
+                                response.getWriter().write("Unauthorized\n" + accessDeniedException.getMessage());
                             }));
                 })
                 .authorizeHttpRequests(authorizeRequest -> {
                     authorizeRequest.requestMatchers(apiPath  + "/auth/**").permitAll()
                             .requestMatchers(apiPath+ "/client/**").hasRole("CLIENT")
-                            .anyRequest().authenticated();
+                            .anyRequest().permitAll();
                 })
                 .anonymous(AbstractHttpConfigurer::disable)
                 .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);

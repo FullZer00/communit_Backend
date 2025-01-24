@@ -8,17 +8,17 @@ import java.util.Optional;
 
 public interface UserDataRepository {
 
-    Optional<UserData> getById(long id);
+    Optional<UserData> findById(long id);
 
-    Optional<List<UserData>> getAll();
+    Optional<List<UserData>> findAll();
 
     UserData update(UserData userData);
 
     void updatePassword(String newPassword, String newSalt, long id);
 
-    Optional<UserData> getUserByEmail(String email);
+    Optional<UserData> findUserByEmail(String email);
 
-    Optional<List<UserData>> getByRole(String roleName);
+    Optional<List<UserData>> findByRole(String roleName);
 
     void delete(UserData userData);
 

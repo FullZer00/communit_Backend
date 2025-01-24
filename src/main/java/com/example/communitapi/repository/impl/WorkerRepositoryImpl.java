@@ -49,7 +49,7 @@ public class WorkerRepositoryImpl implements WorkerRepository {
     private final String FIND_ALL = SELECT_QUERY;
 
     private final String FIND_BY_EMAIL = SELECT_QUERY + """
-            where email = ?
+            where ud.email = ?
             """;
 
     private final String FIND_ALL_BY_PROJECT_ID = SELECT_QUERY + """
@@ -93,6 +93,7 @@ public class WorkerRepositoryImpl implements WorkerRepository {
                     ResultSet.CONCUR_READ_ONLY);
             statement.setLong(1, id);
             try (ResultSet rs = statement.executeQuery()) {
+                rs.next();
                 return Optional.ofNullable(WorkerRowMapper.mapRow(rs));
             }
         }
@@ -143,7 +144,8 @@ public class WorkerRepositoryImpl implements WorkerRepository {
                     ResultSet.CONCUR_READ_ONLY);
             statement.setString(1, email);
             try (ResultSet rs = statement.executeQuery()) {
-                return Optional.ofNullable(WorkerRowMapper.mapRow(rs));
+                rs.next();
+                return Optional.of(WorkerRowMapper.mapRow(rs));
             }
         }
         catch (SQLException e) {

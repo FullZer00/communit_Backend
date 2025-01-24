@@ -85,7 +85,7 @@ public class UserDataRepositoryImpl implements UserDataRepository {
             """;
 
     @Override
-    public Optional<UserData> getById(long id) {
+    public Optional<UserData> findById(long id) {
         try {
             Connection connection = dataSourceConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ID,
@@ -93,6 +93,7 @@ public class UserDataRepositoryImpl implements UserDataRepository {
                     ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setLong(1, id);
             try (ResultSet rs = preparedStatement.executeQuery()) {
+                rs.next();
                 return Optional.ofNullable(UserDataRowMapper.mapRow(rs));
             }
         } catch (SQLException e) {
@@ -101,13 +102,14 @@ public class UserDataRepositoryImpl implements UserDataRepository {
     }
 
     @Override
-    public Optional<List<UserData>> getAll() {
+    public Optional<List<UserData>> findAll() {
         try {
             Connection connection = dataSourceConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL,
                     ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             try (ResultSet rs = preparedStatement.executeQuery()) {
+                rs.next();
                 return Optional.of(UserDataRowMapper.mapRows(rs));
             }
         } catch (SQLException e) {
@@ -149,7 +151,7 @@ public class UserDataRepositoryImpl implements UserDataRepository {
     }
 
     @Override
-    public Optional<UserData> getUserByEmail(String email) {
+    public Optional<UserData> findUserByEmail(String email) {
         try {
             Connection connection = dataSourceConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_EMAIL,
@@ -157,6 +159,7 @@ public class UserDataRepositoryImpl implements UserDataRepository {
                     ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setString(1, email);
             try (ResultSet rs = preparedStatement.executeQuery()) {
+                rs.next();
                 return Optional.ofNullable(UserDataRowMapper.mapRow(rs));
             }
         } catch (SQLException e) {
@@ -165,7 +168,7 @@ public class UserDataRepositoryImpl implements UserDataRepository {
     }
 
     @Override
-    public Optional<List<UserData>> getByRole(String nameRole) {
+    public Optional<List<UserData>> findByRole(String nameRole) {
         try {
             Connection connection = dataSourceConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ROLE,
@@ -173,6 +176,7 @@ public class UserDataRepositoryImpl implements UserDataRepository {
                     ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setString(1, nameRole);
             try (ResultSet rs = preparedStatement.executeQuery()) {
+                rs.next();
                 return Optional.of(UserDataRowMapper.mapRows(rs));
             }
         } catch (SQLException e) {
@@ -208,7 +212,7 @@ public class UserDataRepositoryImpl implements UserDataRepository {
     public UserData save(UserData userData) {
         try {
             Connection connection = dataSourceConfig.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(CREATE);
+            PreparedStatement preparedStatement = connection.prepareStatement(CREATE, PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, userData.getSurname());
             preparedStatement.setString(2, userData.getFirstName());
             preparedStatement.setString(3, userData.getPatronymic());
@@ -218,6 +222,7 @@ public class UserDataRepositoryImpl implements UserDataRepository {
             preparedStatement.setString(7, userData.getSaltPassword());
             preparedStatement.executeUpdate();
             try (ResultSet rs = preparedStatement.getGeneratedKeys()) {
+                rs.next();
                 userData.setId(rs.getLong(1));
                 return userData;
             }
