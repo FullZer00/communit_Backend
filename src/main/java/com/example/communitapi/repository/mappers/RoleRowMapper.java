@@ -20,7 +20,6 @@ public class RoleRowMapper {
 
     public static List<Role> mapRows(ResultSet rs) throws SQLException {
         ArrayList<Role> roles = new ArrayList<>();
-        rs.beforeFirst();
         while (rs.next()) {
             roles.add(mapRow(rs));
         }

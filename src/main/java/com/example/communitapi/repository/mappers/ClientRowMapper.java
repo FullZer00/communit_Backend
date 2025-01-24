@@ -34,10 +34,6 @@ public class ClientRowMapper {
 
     public static List<Client> mapRows(ResultSet rs) throws SQLException {
         List<Client> clients = new ArrayList<>();
-
-        if (rs.isBeforeFirst()) rs.next();
-
-        rs.beforeFirst();
         while (rs.next()) {
             Client client = mapRow(rs);
             clients.add(client);

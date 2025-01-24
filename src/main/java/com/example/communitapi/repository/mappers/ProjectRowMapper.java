@@ -42,7 +42,6 @@ public class ProjectRowMapper {
 
     public static List<Project> mapRows(ResultSet rs) throws SQLException {
         List<Project> projects = new ArrayList<>();
-        rs.beforeFirst();
         while(rs.next()) {
             Project project = mapRow(rs);
             projects.add(project);

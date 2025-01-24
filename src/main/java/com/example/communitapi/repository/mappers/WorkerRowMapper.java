@@ -22,8 +22,6 @@ public class WorkerRowMapper {
 
     public static List<Worker> mapRows(ResultSet rs) throws SQLException {
         List<Worker> workers = new ArrayList<>();
-
-        rs.beforeFirst();
         while (rs.next()) {
             Worker worker = mapRow(rs);
             workers.add(worker);

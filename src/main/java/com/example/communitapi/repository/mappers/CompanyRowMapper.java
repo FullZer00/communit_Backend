@@ -20,7 +20,6 @@ public class CompanyRowMapper {
 
     public static List<Company> mapRows(ResultSet rs) throws SQLException {
         List<Company> companyList = new ArrayList<>();
-        rs.beforeFirst();
         while (rs.next()) {
             Company company = mapRow(rs);
             companyList.add(company);
