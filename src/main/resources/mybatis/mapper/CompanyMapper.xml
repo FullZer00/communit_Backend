@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.communitapi.repository.CompanyRepository">
+    <resultMap id="ProjectResultMap" type="com.example.communitapi.entities.company.Company" autoMapping="false">
+        <id property="id" column="id_company"/>
+        <result property="name" column="name_project"/>
+        <result property="address" column="address_company"/>
+    </resultMap>
+</mapper>

@@ -18,5 +18,7 @@ public interface ClientService {
 
     Client create(Client client);
 
+    boolean isProjectOwner(long projectId, long clientId);
+
     void deleteById(long id);
 }

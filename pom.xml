@@ -40,6 +40,7 @@
         <jakarta-validation.version>3.0.2</jakarta-validation.version>
         <spring-boot-security.version>3.3.5</spring-boot-security.version>
         <json-web-token-version>0.12.6</json-web-token-version>
+        <mybatis.version>3.0.4</mybatis.version>
     </properties>
 
     <dependencies>
@@ -101,6 +102,13 @@
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate-validator.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>jakarta.validation</groupId>

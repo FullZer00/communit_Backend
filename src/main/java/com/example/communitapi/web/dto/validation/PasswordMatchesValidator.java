@@ -18,7 +18,7 @@ public class PasswordMatchesValidator implements ConstraintValidator<PasswordMat
         // Проверяем совпадение паролей
         boolean result = user.getPassword().equals(user.getConfirmPassword());
 
-        if(!result) {
+        if (!result) {
             context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate("Пароли не совпадают")
                     .addPropertyNode("confirmPassword") // Указываем поле, к которому относится ошибка

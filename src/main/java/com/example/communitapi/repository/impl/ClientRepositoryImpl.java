@@ -66,6 +66,14 @@ public class ClientRepositoryImpl implements ClientRepository {
             values (?, ?);
             """;
 
+    private final String CHECK_PROJECT_OWNER = """
+            SELECT EXISTS (
+                SELECT 1
+                FROM communit.projects
+                WHERE id = ? AND client_id = ?
+            ) AS is_project_owned_by_user;
+            """;
+
     @Override
     public Optional<Client> findById(Long id) {
         try {
@@ -120,6 +128,23 @@ public class ClientRepositoryImpl implements ClientRepository {
             }
         } catch (SQLException ex) {
             throw new ResourceMappingException("Error white finding client by full name.");
+        }
+    }
+
+    @Override
+    public boolean checkProjectOwner(long projectId, long clientId) {
+        try {
+            Connection connection = dataSourceConfig.getConnection();
+            PreparedStatement statement = connection.prepareStatement(CHECK_PROJECT_OWNER);
+            statement.setLong(1, projectId);
+            statement.setLong(2, clientId);
+            try (ResultSet rs = statement.executeQuery()) {
+                rs.next();
+                return rs.getBoolean(1);
+            }
+        }
+        catch (SQLException ex) {
+            throw new ResourceMappingException(ex.getMessage());
         }
     }
 

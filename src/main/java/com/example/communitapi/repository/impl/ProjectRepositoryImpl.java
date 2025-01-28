@@ -27,15 +27,16 @@ public class ProjectRepositoryImpl implements ProjectRepository {
                 pr.name as name_project,
                 pr.description as description_project,
                 cl.id as id_client,
+                cl_data.id as id_client_data
                 cl_data.surname as surname_client_data,
                 cl_data.first_name as first_name_client_data,
                 cl_data.patronymic as patronymic_client_data,
                 com.id as id_company,
                 com.name as name_company
             from communit.projects pr
-                inner join communit.clients cl on pr.client_id = cl.id
+                left join communit.clients cl on pr.client_id = cl.id
                 inner join communit.user_data_view cl_data on cl.user_data_id = cl_data.user_data_id
-                inner join communit.companies com on pr.company_id = com.id;
+                left join communit.companies com on pr.company_id = com.id;
             """;
 
     private final String FIND_ALL = SELECT_QUERY;

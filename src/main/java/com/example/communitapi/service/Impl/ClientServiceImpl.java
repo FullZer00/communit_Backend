@@ -59,6 +59,11 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public boolean isProjectOwner(long projectId, long clientId) {
+        return clientRepository.checkProjectOwner(projectId, clientId);
+    }
+
+    @Override
     @Transactional
     public void deleteById(long id) {
         clientRepository.delete(id);

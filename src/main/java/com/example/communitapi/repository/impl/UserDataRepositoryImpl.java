@@ -136,13 +136,12 @@ public class UserDataRepositoryImpl implements UserDataRepository {
     }
 
     @Override
-    public void updatePassword(String newPassword, String newSalt, long idUserData) {
+    public void updatePassword(String newPassword, long idUserData) {
         try {
             Connection connection = dataSourceConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PASSWORD);
             preparedStatement.setString(1, newPassword);
-            preparedStatement.setString(2, newSalt);
-            preparedStatement.setLong(3, idUserData);
+            preparedStatement.setLong(2, idUserData);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new ResourceMappingException(e);

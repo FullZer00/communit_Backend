@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.communitapi.repository.ClientRepository">
+    <resultMap id="ResultMap" type="com.example.communitapi.entities.client.Client" autoMapping="false">
+        <id property="id" column="id_client"/>
+        <result property="firstName" column=""/>
+        <association property="userData" column="user_data"
+                     javaType="com.example.communitapi.entities.userData.UserData"
+                     resultMap="com.example.communitapi.repository.UserDataRepository.UserDataResultMap"
+                     autoMapping="false"/>
+        <association property="company" column="company"
+                     javaType="com.example.communitapi.entities.company.Company"
+                     resultMap="com.example.communitapi.repository.CompanyRepository.CompanyResultMap"
+                     autoMapping="false"/>
+    </resultMap>
+</mapper>

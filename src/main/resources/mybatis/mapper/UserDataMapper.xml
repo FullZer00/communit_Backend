@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.communitapi.repository.UserDataRepository">
+    <resultMap id="UserDataResultMap" type="com.example.communitapi.entities.userData.UserData" autoMapping="false">
+        <id property="id" column="id_user_data"/>
+        <result property="firstName" column="first_name_user_data"/>
+        <result property="surname" column="surname_user_data"/>
+        <result property="patronymic" column="patronymic_user_data"/>
+        <result property="email" column="email_user_data"/>
+        <result property="phone" column="phone_user_data"/>
+        <result property="password" column="password_user_data"/>
+        <collection property="roles"
+                    ofType="com.example.communitapi.entities.role.Role"
+                    resultMap="com.example.communitapi.repository.RoleRepository.RoleResultMap"
+                    autoMapping="false"
+        />
+    </resultMap>
+
+    <select id="findById" resultMap="UserDataResultMap">
+        select
+        ud.id as id_user_data,
+        ud.first_name as first_name_user_data,
+        ud.surname as surname_user_data,
+        ud.patronymic as patronymic_user_data,
+        ud.email as email_user_data,
+        ud.phone as phone_user_data,
+        ud.password as password_user_data,
+        ud.salt_password as salt_password_user_data
+        from communit.user_data ud
+        where ud.id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="UserDataResultMap">
+        select
+        ud.id as id_user_data,
+        ud.first_name as first_name_user_data,
+        ud.surname as surname_user_data,
+        ud.patronymic as patronymic_user_data,
+        ud.email as email_user_data,
+        ud.phone as phone_user_data,
+        ud.password as password_user_data,
+        ud.salt_password as salt_password_user_data
+        from communit.user_data ud
+    </select>
+
+    <select id="findByRole" resultMap="UserDataResultMap">
+        WITH role_name AS (SELECT #{id} AS user_input)
+        select
+        ud.id as id_user_data,
+        ud.first_name as first_name_user_data,
+        ud.surname as surname_user_data,
+        ud.patronymic as patronymic_user_data,
+        ud.email as email_user_data,
+        ud.phone as phone_user_data
+        from communit.user_data ud
+        left join communit.users_roles ur on ur.user_id = ud.id
+        inner join communit.roles r on r.id = ur.role_id,
+        role_name
+        WHERE r.ru_name = role_name.user_input or r.name = role_name.user_input;
+    </select>
+
+    <insert id="save" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        insert into communit.user_data (surname, first_name, patronymic, email, phone, password, salt_password)
+        values (#{surname}, #{firstName}, #{patronymic}, #{email}, #{phone}, #{password}, #{salt_password});
+    </insert>
+
+    <update id="update">
+        update communit.user_data
+        set surname = #{surname},
+        first_name = #{firstName},
+        patronymic = #{patronymic},
+        email = #{email},
+        phone = #{phone}
+        where id = ?;
+    </update>
+
+    <update id="updatePassword">
+        update communit.user_data
+        set password = #{newPassword},
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE from user_data where id = #{id}
+    </delete>
+
+</mapper>

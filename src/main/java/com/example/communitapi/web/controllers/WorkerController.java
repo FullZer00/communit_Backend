@@ -6,8 +6,8 @@ import com.example.communitapi.web.dto.validation.OnCreate;
 import com.example.communitapi.web.dto.validation.OnUpdate;
 import com.example.communitapi.web.dto.worker.WorkerDto;
 import com.example.communitapi.web.mappers.WorkerMapper;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +25,9 @@ public class WorkerController {
 
 
     @GetMapping("/{id}")
+    @PreAuthorize("@customSecurityExpression.canAccessUser(#id, " +
+            "T(com.example.communitapi.entities.role.Roles).ADMIN, " +
+            "T(com.example.communitapi.entities.role.Roles).ARCHITECT)")
     public WorkerDto getById(@PathVariable long id) {
         Worker worker = workerService.getById(id);
         return workerMapper.toDto(worker);

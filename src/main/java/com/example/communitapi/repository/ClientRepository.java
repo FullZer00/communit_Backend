@@ -15,6 +15,8 @@ public interface ClientRepository {
 
     Optional<List<Client>> findAllByFullName(String fullName);
 
+    boolean checkProjectOwner(long projectId, long clientId);
+
     Client save(Client client);
 
     Client update(Long id, Client client);
