@@ -78,8 +78,8 @@ public class RoleRepositoryImpl implements RoleRepository {
             preparedStatement.setLong(1, id);
 
             try (ResultSet rs = preparedStatement.executeQuery()) {
-                rs.next();
-                return Optional.of((Role) RoleRowMapper.mapRow(rs));
+                if (!rs.next()) return Optional.empty();
+                return Optional.of(RoleRowMapper.mapRow(rs));
             }
         }
         catch (SQLException e) {
@@ -95,7 +95,7 @@ public class RoleRepositoryImpl implements RoleRepository {
             preparedStatement.setString(1, name);
 
             try (ResultSet rs = preparedStatement.executeQuery()) {
-                rs.next();
+                if (!rs.next()) return Optional.empty();
                 return Optional.of(RoleRowMapper.mapRow(rs));
             }
         }

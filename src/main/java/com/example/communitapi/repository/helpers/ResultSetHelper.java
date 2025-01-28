@@ -10,7 +10,7 @@ public class ResultSetHelper {
     public static String getStringValue(ResultSet resultSet, String nameField) {
         try {
             String value = resultSet.getString(nameField);
-            if (value.isEmpty()) return "";
+            if (value == null || value.isEmpty()) return "";
             return value;
         } catch (SQLException e) {
             throw new ResourceMappingException("Поле " + nameField + " не существует\n" + e.getMessage());

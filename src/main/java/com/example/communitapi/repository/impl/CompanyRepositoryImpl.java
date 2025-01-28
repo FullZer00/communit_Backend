@@ -59,8 +59,8 @@ public class CompanyRepositoryImpl implements CompanyRepository {
                     );
             statement.setLong(1, id);
             try (ResultSet rs = statement.executeQuery()) {
-                rs.next();
-                return Optional.ofNullable(CompanyRowMapper.mapRow(rs));
+                if (!rs.next()) return Optional.empty();
+                return Optional.of(CompanyRowMapper.mapRow(rs));
             }
         }
         catch (SQLException e) {

@@ -93,8 +93,8 @@ public class WorkerRepositoryImpl implements WorkerRepository {
                     ResultSet.CONCUR_READ_ONLY);
             statement.setLong(1, id);
             try (ResultSet rs = statement.executeQuery()) {
-                rs.next();
-                return Optional.ofNullable(WorkerRowMapper.mapRow(rs));
+                if (!rs.next()) return Optional.empty();
+                return Optional.of(WorkerRowMapper.mapRow(rs));
             }
         }
         catch (SQLException e) {
@@ -144,7 +144,7 @@ public class WorkerRepositoryImpl implements WorkerRepository {
                     ResultSet.CONCUR_READ_ONLY);
             statement.setString(1, email);
             try (ResultSet rs = statement.executeQuery()) {
-                rs.next();
+                if (!rs.next()) return Optional.empty();
                 return Optional.of(WorkerRowMapper.mapRow(rs));
             }
         }

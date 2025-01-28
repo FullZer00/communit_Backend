@@ -23,4 +23,6 @@ public interface UserDataService {
     void deleteUser(long id);
 
     void deleteUser(UserData userData);
+
+    UserData authenticate(String email, String password);
 }

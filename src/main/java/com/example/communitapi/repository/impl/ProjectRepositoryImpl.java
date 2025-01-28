@@ -92,7 +92,7 @@ public class ProjectRepositoryImpl implements ProjectRepository {
                     ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setLong(1, id);
             try (ResultSet rs = preparedStatement.executeQuery()) {
-                rs.next();
+                if (!rs.next()) return Optional.empty();
                 return Optional.of(ProjectRowMapper.mapRow(rs));
             }
         } catch (SQLException e) {
@@ -141,7 +141,6 @@ public class ProjectRepositoryImpl implements ProjectRepository {
                     ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setLong(1, workerId);
             try (ResultSet rs = preparedStatement.executeQuery()) {
-                rs.next();
                 return Optional.of(ProjectRowMapper.mapRows(rs));
             }
         } catch (SQLException e) {

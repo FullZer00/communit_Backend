@@ -6,6 +6,7 @@ import com.example.communitapi.service.UserDataService;
 import com.example.communitapi.web.dto.auth.JwtRequest;
 import com.example.communitapi.web.dto.auth.JwtResponse;
 import com.example.communitapi.web.dto.userData.UserDataDto;
+import com.example.communitapi.web.dto.userData.UserDataWithPasswordDto;
 import com.example.communitapi.web.dto.validation.OnCreate;
 import com.example.communitapi.web.mappers.UserDataMapper;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,11 @@ public class AuthController {
     @PostMapping("/register")
     public UserDataDto register(@Validated(OnCreate.class) @RequestBody UserDataDto userDataDto) {
         return regService.registerUser(userDataDto);
+    }
+
+    @PostMapping("/register/password")
+    public UserDataDto registerWithPassword(@Validated(OnCreate.class) @RequestBody UserDataWithPasswordDto userDataDto) {
+        return regService.registerUserWithPassword(userDataDto);
     }
 
     @PostMapping("/refresh")

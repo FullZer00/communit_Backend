@@ -93,8 +93,8 @@ public class UserDataRepositoryImpl implements UserDataRepository {
                     ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setLong(1, id);
             try (ResultSet rs = preparedStatement.executeQuery()) {
-                rs.next();
-                return Optional.ofNullable(UserDataRowMapper.mapRow(rs));
+                if (!rs.next()) return Optional.empty();
+                return Optional.of(UserDataRowMapper.mapRow(rs));
             }
         } catch (SQLException e) {
             throw new ResourceMappingException(e);
@@ -109,7 +109,6 @@ public class UserDataRepositoryImpl implements UserDataRepository {
                     ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             try (ResultSet rs = preparedStatement.executeQuery()) {
-                rs.next();
                 return Optional.of(UserDataRowMapper.mapRows(rs));
             }
         } catch (SQLException e) {
@@ -159,8 +158,8 @@ public class UserDataRepositoryImpl implements UserDataRepository {
                     ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setString(1, email);
             try (ResultSet rs = preparedStatement.executeQuery()) {
-                rs.next();
-                return Optional.ofNullable(UserDataRowMapper.mapRow(rs));
+                if (!rs.next()) return Optional.empty();
+                return Optional.of(UserDataRowMapper.mapRow(rs));
             }
         } catch (SQLException e) {
             throw new ResourceMappingException("Error while user data searching by email");
@@ -227,7 +226,11 @@ public class UserDataRepositoryImpl implements UserDataRepository {
                 return userData;
             }
         } catch (SQLException e) {
-            throw new ResourceMappingException(e);
+            if (e.getSQLState().equals("23505")) {
+                throw new ResourceMappingException("Пользователь с данной почтой или номером телефона уже существует.");
+            }
+
+            throw new ResourceMappingException("Ошибка при сохранении данных: " + e.getMessage() + "\nSQL State: " + e.getSQLState());
         }
     }
 

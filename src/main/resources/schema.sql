@@ -18,7 +18,7 @@ create table if not exists user_data (
     first_name varchar(100) not null,
     surname varchar(100) not null,
     patronymic varchar(100),
-    email varchar(100),
+    email varchar(100) unique,
     phone varchar(20),
     password varchar(255),
     salt_password varchar(10)

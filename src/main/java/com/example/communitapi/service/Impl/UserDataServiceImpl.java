@@ -1,23 +1,27 @@
 package com.example.communitapi.service.Impl;
 
 import com.example.communitapi.entities.exceptions.ResourceNotFoundException;
-import com.example.communitapi.entities.role.Role;
 import com.example.communitapi.entities.userData.UserData;
 import com.example.communitapi.repository.RoleRepository;
 import com.example.communitapi.repository.UserDataRepository;
+import com.example.communitapi.service.PasswordService;
 import com.example.communitapi.service.UserDataService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 @AllArgsConstructor
 public class UserDataServiceImpl implements UserDataService {
 
+    private final PasswordService passwordService;
     private final UserDataRepository userDataRepository;
     private final RoleRepository roleRepository;
+    private TransactionTemplate transactionTemplate;
 
     @Override
     @Transactional(readOnly = true)
@@ -54,8 +58,7 @@ public class UserDataServiceImpl implements UserDataService {
     @Override
     @Transactional
     public UserData createUser(UserData userData) {
-        userDataRepository.save(userData);
-        return userData;
+        return userDataRepository.save(userData);
     }
 
     @Override
@@ -74,5 +77,17 @@ public class UserDataServiceImpl implements UserDataService {
     @Transactional
     public void deleteUser(UserData userData) {
         userDataRepository.delete(userData);
+    }
+
+    @Override
+    @Transactional
+    public UserData authenticate(String email, String password) {
+        UserData userData = getUserByEmail(email);
+
+        if (passwordService.checkPassword(password, userData.getPassword())) {
+            return userData;
+        }
+
+        return null;
     }
 }
