@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.communitapi.repository.ClientRepository">
-    <resultMap id="ResultMap" type="com.example.communitapi.entities.client.Client" autoMapping="false">
+    <resultMap id="ClientResultMap" type="com.example.communitapi.entities.client.Client" autoMapping="false">
         <id property="id" column="id_client"/>
         <result property="firstName" column=""/>
         <association property="userData" column="user_data"
@@ -16,4 +16,68 @@
                      resultMap="com.example.communitapi.repository.CompanyRepository.CompanyResultMap"
                      autoMapping="false"/>
     </resultMap>
+
+    <select id="findById" resultMap="ClientResultMap">
+        SELECT c.id as id,
+        ud.surname as surname_user_data,
+        ud.first_name as first_name_user_data,
+        ud.patronymic as patronymic_user_data,
+        com.name as company_name
+        FROM communit.clients c
+        inner join communit.user_data_view ud on c.user_data_id = ud.user_data_id
+        inner join communit.companies com on c.company_id = com.id
+        WHERE c.id = ?;
+    </select>
+
+    <select id="findAll" resultMap="ClientResultMap">
+        SELECT c.id as id,
+        ud.surname as surname_user_data,
+        ud.first_name as first_name_user_data,
+        ud.patronymic as patronymic_user_data,
+        com.name as company_name
+        FROM communit.clients c
+        inner join communit.user_data_view ud on c.user_data_id = ud.user_data_id
+        inner join communit.companies com on c.company_id = com.id
+    </select>
+
+    <select id="findByEmail" resultMap="ClientResultMap">
+        SELECT c.id as id,
+        ud.surname as surname_user_data,
+        ud.first_name as first_name_user_data,
+        ud.patronymic as patronymic_user_data,
+        com.name as company_name
+        FROM communit.clients c
+        inner join communit.user_data_view ud on c.user_data_id = ud.user_data_id
+        inner join communit.companies com on c.company_id = com.id
+        WHERE ud.email = ?;
+    </select>
+
+    <select id="findAllByFullName" resultMap="ClientResultMap">
+        SELECT c.id as id,
+        ud.surname as surname_user_data,
+        ud.first_name as first_name_user_data,
+        ud.patronymic as patronymic_user_data,
+        com.name as company_name
+        FROM communit.clients c
+        inner join communit.user_data_view ud on c.user_data_id = ud.user_data_id
+        inner join communit.companies com on c.company_id = com.id
+        WHERE (ud.surname || ' ' || ud.first_name || ' ' || COALESCE(ud.patronymic, '')) like '%' || ? || '%';
+    </select>
+
+    <insert id="save">
+        INSERT INTO communit.clients (user_data_id,company_id)
+        values (#{userDataId}, #{companyId});
+    </insert>
+
+    <update id="update">
+        UPDATE communit.clients c
+        SET user_data_id = #{userDataId},
+        company_id = #{companyId}
+        WHERE id = #{id};
+    </update>
+
+    <delete id="delete">
+        DELETE FROM communit.clients c
+        WHERE c.id = #{id};
+    </delete>
 </mapper>

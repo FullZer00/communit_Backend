@@ -8,6 +8,8 @@ import java.util.Optional;
 public interface ProjectRepository {
     Optional<Project> findById(long id);
 
+    Optional<List<Project>> findAll();
+
     Optional<List<Project>> findAllByCompanyId(long companyId);
 
     Optional<List<Project>> findAllByClientId(long clientId);

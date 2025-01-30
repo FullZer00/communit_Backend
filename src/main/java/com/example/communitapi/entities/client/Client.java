@@ -7,6 +7,8 @@ import lombok.Data;
 @Data
 public class Client {
     private long id;
+    private long companyId;
+    private long userDataId;
     private UserData applicant;
     private Company company;
 }

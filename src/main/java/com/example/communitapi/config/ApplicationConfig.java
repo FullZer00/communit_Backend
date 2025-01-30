@@ -3,7 +3,6 @@ package com.example.communitapi.config;
 import com.example.communitapi.web.security.JwtTokenFilter;
 import com.example.communitapi.web.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;

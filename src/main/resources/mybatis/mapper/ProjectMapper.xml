@@ -22,4 +22,113 @@
             <result property="name" column="name_company" />
         </association>
     </resultMap>
+
+    <select id="findById" resultMap="ProjectResultMap">
+        select
+        pr.id as id_project,
+        pr.name as name_project,
+        pr.description as description_project,
+        cl.id as id_client,
+        cl_data.id as id_client_data
+        cl_data.surname as surname_client_data,
+        cl_data.first_name as first_name_client_data,
+        cl_data.patronymic as patronymic_client_data,
+        com.id as id_company,
+        com.name as name_company
+        from communit.projects pr
+        left join communit.clients cl on pr.client_id = cl.id
+        inner join communit.user_data_view cl_data on cl.user_data_id = cl_data.user_data_id
+        left join communit.companies com on pr.company_id = com.id;
+        where pr.id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="ProjectResultMap">
+        select pr.id as id_project,
+        pr.name as name_project,
+        pr.description as description_project,
+        cl.id as id_client,
+        cl_data.id as id_client_data
+        cl_data.surname as surname_client_data,
+        cl_data.first_name as first_name_client_data,
+        cl_data.patronymic as patronymic_client_data,
+        com.id as id_company,
+        com.name as name_company
+        from communit.projects pr
+        left join communit.clients cl on pr.client_id = cl.id
+        inner join communit.user_data_view cl_data on cl.user_data_id = cl_data.user_data_id
+        left join communit.companies com on pr.company_id = com.id;
+    </select>
+
+    <select id="findAllByCompanyId" resultMap="ProjectResultMap">
+        select pr.id as id_project,
+        pr.name as name_project,
+        pr.description as description_project,
+        cl.id as id_client,
+        cl_data.surname || ' ' || cl_data.first_name || ' ' || COALESCE(cl_data.patronymic, '') as client_fio,
+        com.name as name_company
+        from communit.projects pr
+        inner join communit.clients cl on pr.client_id = cl.id
+        inner join communit.user_data_view cl_data on cl.user_data_id = cl_data.user_data_id
+        inner join communit.companies com on pr.company_id = com.id
+        inner join communit.projects_workers project_workers on pr.id = project_workers.project_id
+        where project_workers.worker_id = ?
+        where id_company= #{companyId}
+    </select>
+
+    <select id="findAllByClientId" resultMap="ProjectResultMap">
+        select
+        pr.id as id_project,
+        pr.name as name_project,
+        pr.description as description_project,
+        cl.id as id_client,
+        cl_data.id as id_client_data
+        cl_data.surname as surname_client_data,
+        cl_data.first_name as first_name_client_data,
+        cl_data.patronymic as patronymic_client_data,
+        com.id as id_company,
+        com.name as name_company
+        from communit.projects pr
+        left join communit.clients cl on pr.client_id = cl.id
+        inner join communit.user_data_view cl_data on cl.user_data_id = cl_data.user_data_id
+        left join communit.companies com on pr.company_id = com.id;
+        where id_client= #{clientId}
+    </select>
+
+    <select id="findAllByWorkerId" resultMap="ProjectResultMap">
+        select
+        pr.id as id_project,
+        pr.name as name_project,
+        pr.description as description_project,
+        cl.id as id_client,
+        cl_data.surname || ' ' || cl_data.first_name || ' ' || COALESCE(cl_data.patronymic, '') as client_fio,
+        com.name as name_company
+        from communit.projects pr
+        inner join communit.clients cl on pr.client_id = cl.id
+        inner join communit.user_data_view cl_data on cl.user_data_id = cl_data.user_data_id
+        inner join communit.companies com on pr.company_id = com.id
+        inner join communit.projects_workers project_workers on pr.id = project_workers.project_id
+        where project_workers.worker_id = #{personId}
+    </select>
+
+    <insert id="save" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into communit.projects (name, description, location, company_id, client_id)
+        values (#{name}, #{description}, #{location}, #{companyId}, #{clientId})
+    </insert>
+
+    <update id="update">
+        update communit.projects
+        set name = #{name},
+        description =  #{description},
+        location = #{location},
+        company_id = #{companyId},
+        client_id = #{clientId}
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from communit.projects
+        where id = #{id};
+    </delete>
+
 </mapper>
+

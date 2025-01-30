@@ -6,7 +6,47 @@
 <mapper namespace="com.example.communitapi.repository.CompanyRepository">
     <resultMap id="ProjectResultMap" type="com.example.communitapi.entities.company.Company" autoMapping="false">
         <id property="id" column="id_company"/>
-        <result property="name" column="name_project"/>
+        <result property="name" column="name_company"/>
         <result property="address" column="address_company"/>
     </resultMap>
+
+    <select id="findById" resultMap="ProjectResultMap">
+        SELECT com.id as id_company
+        com.name as name_company
+        com.address as address_company
+        FROM companies com
+        WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="ProjectResultMap">
+        SELECT com.id as id_company
+        com.name as name_company
+        com.address as address_company
+        FROM companies com
+    </select>
+
+    <select id="findByName" resultMap="ProjectResultMap">
+        SELECT com.id as id_company
+        com.name as name_company
+        com.address as address_company
+        FROM companies com
+        WHERE c.name ilike '%' || #{name} || '%'
+    </select>
+
+    <delete id="delete">
+        delete from communit.companies
+        where id = #{id};
+    </delete>
+
+    <insert id="save">
+        INSERT INTO communit.companies (name, address)
+        values (#{name}, #{address});
+    </insert>
+
+    <update id="update">
+        update communit.companies
+        set name = #{name},
+        address = #{address}
+        where id = #{id};
+    </update>
 </mapper>

@@ -102,6 +102,11 @@ public class ProjectRepositoryImpl implements ProjectRepository {
     }
 
     @Override
+    public Optional<List<Project>> findAll() {
+        return Optional.empty();
+    }
+
+    @Override
     public Optional<List<Project>> findAllByCompanyId(long companyId) {
         try {
             Connection connection = dataSourceConfig.getConnection();

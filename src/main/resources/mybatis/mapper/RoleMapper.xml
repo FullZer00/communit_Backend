@@ -9,4 +9,61 @@
         <result property="name" column="name_role"/>
         <result property="ruName" column="ru_name_role"/>
     </resultMap>
+
+    <select id="findById" resultMap="RoleResultMap">
+        select r.id as id_role,
+        r.name as name_role,
+        r.ru_name as ru_name_role
+        from roles r
+        where id = #{id}
+    </select>
+
+    <select id="findByName" resultMap="RoleResultMap">
+        with input as (select #{name} as name)
+        select r.id as id_role,
+        r.name as name_role,
+        r.ru_name as ru_name_role
+        from roles r,
+        input
+        where r.name = input.name or r.ru_name = input.name
+    </select>
+
+    <select id="findAll" resultMap="RoleResultMap">
+        select r.id as id_role,
+        r.name as name_role,
+        r.ru_name as ru_name_role
+        from roles r
+    </select>
+
+    <select id="findByUserDataId" resultMap="RoleResultMap">
+        select r.id as id_role,
+        r.name as name_role,
+        r.ru_name as ru_name_role
+        from roles r
+        inner join users_roles ur on ur.role_id = r.id
+        where ur.user_id = #{userDataId};
+    </select>
+
+    <select id="checkRole">
+        WITH role_name AS (SELECT #{roleName} AS value)
+        select exists(select * from roles, role_name where roles.name = role_name.value or roles.ru_name =
+        role_name.value);
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into roles(name, ru_name)
+        values(#{name}, #{ruName});
+    </insert>
+
+    <update id="update">
+        update roles
+        set name = #{name},
+        ru_name = #{ruName}
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from roles where id = #{id}
+    </delete>
 </mapper>
+

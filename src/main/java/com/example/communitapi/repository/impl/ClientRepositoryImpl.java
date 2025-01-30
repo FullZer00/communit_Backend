@@ -35,6 +35,10 @@ public class ClientRepositoryImpl implements ClientRepository {
                         WHERE c.id = ?;
             """;
 
+    protected final String FIND_BY_FULLNAME = """
+            
+            """;
+
     protected final String FIND_BY_EMAIL_CLIENT = """
             SELECT c.id as id,
                     ud.*,
@@ -121,7 +125,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     public Optional<List<Client>> findAllByFullName(String fullName) {
         try {
             Connection connection = dataSourceConfig.getConnection();
-            PreparedStatement statement = connection.prepareStatement(FIND_BY_ID_CLIENT);
+            PreparedStatement statement = connection.prepareStatement(FIND_BY_FULLNAME);
             statement.setString(1, fullName);
             try (ResultSet rs = statement.executeQuery()) {
                 return Optional.of(ClientRowMapper.mapRows(rs));
@@ -170,7 +174,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Client update(Long id, Client client) {
+    public Client update(Client client) {
         String updatingError = "Error while updating client.";
         try {
             Connection connection = dataSourceConfig.getConnection();
@@ -178,7 +182,7 @@ public class ClientRepositoryImpl implements ClientRepository {
             PreparedStatement statement = connection.prepareStatement(UPDATE_CLIENT);
             statement.setLong(1, userData.getId());
             statement.setLong(2, client.getCompany().getId());
-            statement.setLong(3, id);
+            statement.setLong(3, client.getId());
             client.setApplicant(userData);
             statement.executeUpdate();
             return client;
