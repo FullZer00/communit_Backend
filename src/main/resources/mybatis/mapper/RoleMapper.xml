@@ -44,7 +44,7 @@
         where ur.user_id = #{userDataId};
     </select>
 
-    <select id="checkRole">
+    <select id="checkRole" resultType="boolean">
         WITH role_name AS (SELECT #{roleName} AS value)
         select exists(select * from roles, role_name where roles.name = role_name.value or roles.ru_name =
         role_name.value);

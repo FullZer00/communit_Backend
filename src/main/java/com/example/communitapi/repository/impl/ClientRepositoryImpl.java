@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+//@Repository
 @RequiredArgsConstructor
 public class ClientRepositoryImpl implements ClientRepository {
 
@@ -153,7 +153,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Client save(Client client) {
+    public void save(Client client) {
         try {
             Connection connection = dataSourceConfig.getConnection();
             UserData userData = userDataRepository.findOrSave(client.getApplicant());
@@ -162,30 +162,22 @@ public class ClientRepositoryImpl implements ClientRepository {
             statement.setLong(1, userData.getId());
             statement.setLong(2, company.getId());
             statement.executeUpdate();
-            try (ResultSet rs = statement.getGeneratedKeys()) {
-                client.setCompany(company);
-                client.setApplicant(userData);
-                client.setId(rs.getLong(1));
-                return client;
-            }
         } catch (SQLException ex) {
             throw new ResourceMappingException("Error while creating client.");
         }
     }
 
     @Override
-    public Client update(Client client) {
+    public void update(Client client) {
         String updatingError = "Error while updating client.";
         try {
             Connection connection = dataSourceConfig.getConnection();
-            UserData userData = userDataRepository.update(client.getApplicant());
+            userDataRepository.update(client.getApplicant());
             PreparedStatement statement = connection.prepareStatement(UPDATE_CLIENT);
-            statement.setLong(1, userData.getId());
-            statement.setLong(2, client.getCompany().getId());
+            statement.setLong(1, client.getUserDataId());
+            statement.setLong(2, client.getCompanyId());
             statement.setLong(3, client.getId());
-            client.setApplicant(userData);
             statement.executeUpdate();
-            return client;
         } catch (SQLException ex) {
             throw new ResourceMappingException(updatingError);
         }

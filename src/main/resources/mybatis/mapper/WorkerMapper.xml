@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.communitapi.repository.WorkerRepository">
+    <resultMap id="WorkerResultMap" type="com.example.communitapi.entities.worker.Worker" autoMapping="false">
+        <id property="id" column="id_worker"/>
+        <result property="passportNumber" column="passport_number_worker" />
+        <result property="passportSeria" column="passport_seria_worker" />
+        <result property="rate" column="rate_worker" />
+        <result property="userDataId" column="id_user_data"/>
+        <association property="userData"
+                     javaType="com.example.communitapi.entities.userData.UserData"
+                     resultMap="com.example.communitapi.repository.UserDataRepository.UserDataResultMap"/>
+    </resultMap>
+
+    <sql id="BaseWorkerSelect">
+        select
+        w.id as id_worker,
+        w.user_data_id as id_user_data,
+        ud.surname as surname_user_data,
+        ud.first_name as first_name_user_data,
+        ud.patronymic as patronymic_user_data,
+        ud.email as email_user_data,
+        ud.phone as phone_user_data,
+        w.passport_number as passport_number_worker,
+        w.passport_seria as passport_seria_worker,
+        w.rate as rate_worker
+        from communit.workers w
+        inner join communit.user_data ud on ud.id = w.user_data_id
+    </sql>
+
+    <select id="findById" resultMap="WorkerResultMap">
+        <include refid="BaseWorkerSelect" />
+        where w.id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="WorkerResultMap">
+        <include refid="BaseWorkerSelect" />
+    </select>
+
+    <select id="findByFullName" resultMap="WorkerResultMap">
+        <include refid="BaseWorkerSelect" />
+        where ud.surname || ' ' || ud.first_name || ' ' || COALESCE(ud.patronymic, ' ') ilike '%' || ? || '%';
+    </select>
+
+    <select id="findByEmail" resultMap="WorkerResultMap">
+        <include refid="BaseWorkerSelect" />
+        where ud.email = #{email}
+    </select>
+
+    <select id="findAllByProjectId" resultMap="WorkerResultMap" >
+        <include refid="BaseWorkerSelect" />
+        left join communit.projects_workers pr_w on pr_w.worker_id = w.id
+        inner join communit.projects pr on pr.id = pr_w.project_id
+        where pr.id = ?;
+    </select>
+
+    <insert id="save" useGeneratedKeys="true">
+        insert into communit.workers (user_data_id, passport_seria, passport_number, rate)
+        values (#{userDataId}, #{passportSeria}, #{passportNumber}, #{rate});
+    </insert>
+
+    <update id="update">
+        update communit.workers
+        set passport_seria = #{passportSeria},
+        passport_number = #{passportNumber},
+        rate = #{rate}
+        where id = #{id};
+    </update>
+
+    <delete id="delete">
+        delete from communit.workers where id = #{id};
+    </delete>
+</mapper>

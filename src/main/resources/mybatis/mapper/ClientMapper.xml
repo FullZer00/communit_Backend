@@ -6,7 +6,6 @@
 <mapper namespace="com.example.communitapi.repository.ClientRepository">
     <resultMap id="ClientResultMap" type="com.example.communitapi.entities.client.Client" autoMapping="false">
         <id property="id" column="id_client"/>
-        <result property="firstName" column=""/>
         <association property="userData" column="user_data"
                      javaType="com.example.communitapi.entities.userData.UserData"
                      resultMap="com.example.communitapi.repository.UserDataRepository.UserDataResultMap"

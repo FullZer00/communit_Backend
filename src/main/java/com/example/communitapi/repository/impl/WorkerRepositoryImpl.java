@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+//@Repository
 @AllArgsConstructor
 public class WorkerRepositoryImpl implements WorkerRepository {
 

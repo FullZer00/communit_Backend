@@ -1,11 +1,12 @@
 package com.example.communitapi.repository;
 
-import com.example.communitapi.entities.role.Role;
 import com.example.communitapi.entities.worker.Worker;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Optional;
 
+@Mapper
 public interface WorkerRepository {
 
     Optional<Worker> findById(long id);

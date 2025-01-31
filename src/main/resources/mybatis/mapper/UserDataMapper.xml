@@ -62,9 +62,24 @@
         WHERE r.ru_name = role_name.user_input or r.name = role_name.user_input;
     </select>
 
-    <insert id="save" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
-        insert into communit.user_data (surname, first_name, patronymic, email, phone, password, salt_password)
-        values (#{surname}, #{firstName}, #{patronymic}, #{email}, #{phone}, #{password}, #{salt_password});
+    <select id="findUserByEmail" resultMap="UserDataResultMap">
+        select
+        ud.id as id_user_data,
+        ud.first_name as first_name_user_data,
+        ud.surname as surname_user_data,
+        ud.patronymic as patronymic_user_data,
+        ud.email as email_user_data,
+        ud.phone as phone_user_data,
+        ud.password as password_user_data
+        from communit.user_data ud
+        left join communit.users_roles ur on ur.user_id = ud.id
+        left join communit.roles r on r.id = ur.role_id
+        WHERE email = #{email}
+    </select>
+
+    <insert id="save" keyProperty="id" parameterType="com.example.communitapi.entities.userData.UserData" useGeneratedKeys="true">
+        insert into communit.user_data (surname, first_name, patronymic, email, phone, password)
+        values (#{surname}, #{firstName}, #{patronymic}, #{email}, #{phone}, #{password});
     </insert>
 
     <update id="update">

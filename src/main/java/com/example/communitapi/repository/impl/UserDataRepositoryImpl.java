@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+//@Repository
 @AllArgsConstructor
 public class UserDataRepositoryImpl implements UserDataRepository {
 
@@ -117,7 +117,7 @@ public class UserDataRepositoryImpl implements UserDataRepository {
     }
 
     @Override
-    public UserData update(UserData userData) {
+    public void update(UserData userData) {
         try {
             Connection connection = dataSourceConfig.getConnection();
             PreparedStatement statement = connection.prepareStatement(UPDATE);
@@ -128,8 +128,6 @@ public class UserDataRepositoryImpl implements UserDataRepository {
             statement.setString(5, userData.getPhone());
             statement.setLong(6, userData.getId());
             statement.executeUpdate();
-            return userData;
-
         } catch (SQLException e) {
             throw new ResourceMappingException(e);
         }
@@ -207,7 +205,7 @@ public class UserDataRepositoryImpl implements UserDataRepository {
     }
 
     @Override
-    public UserData save(UserData userData) {
+    public void save(UserData userData) {
         try {
             Connection connection = dataSourceConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(CREATE, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -221,8 +219,6 @@ public class UserDataRepositoryImpl implements UserDataRepository {
             preparedStatement.executeUpdate();
             try (ResultSet rs = preparedStatement.getGeneratedKeys()) {
                 rs.next();
-                userData.setId(rs.getLong(1));
-                return userData;
             }
         } catch (SQLException e) {
             if (e.getSQLState().equals("23505")) {

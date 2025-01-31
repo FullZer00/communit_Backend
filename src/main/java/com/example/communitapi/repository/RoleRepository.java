@@ -1,11 +1,12 @@
 package com.example.communitapi.repository;
 
 import com.example.communitapi.entities.role.Role;
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Optional;
 
+@Mapper
 public interface RoleRepository {
 
     Optional<Role> findById(long id);
