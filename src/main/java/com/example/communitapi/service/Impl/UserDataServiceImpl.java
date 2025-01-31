@@ -35,8 +35,8 @@ public class UserDataServiceImpl implements UserDataService {
     public UserData getUserByEmail(String email) {
         UserData userData = userDataRepository.findUserByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-        userData.setRoles(roleRepository.findByUserDataId(userData.getId())
-            .orElseThrow(() -> null));
+//        userData.setRoles(roleRepository.findByUserDataId(userData.getId())
+//            .orElseThrow(() -> null));
 
         return userData;
     }
@@ -58,7 +58,8 @@ public class UserDataServiceImpl implements UserDataService {
     @Override
     @Transactional
     public UserData createUser(UserData userData) {
-        return userDataRepository.save(userData);
+        userDataRepository.save(userData);
+        return userData;
     }
 
     @Override
