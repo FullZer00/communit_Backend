@@ -7,6 +7,7 @@ import com.example.communitapi.entities.exceptions.ResourceNotFoundException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
@@ -66,6 +68,20 @@ public class ControllerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ExceptionBody handleRuntimeException(Exception ex) {
         return new ExceptionBody(ex.getMessage());
+    }
+
+//    @ExceptionHandler(AuthenticationException.class)
+//    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+//    public ExceptionBody handleAuthenticationException(AuthenticationException ex) {
+//        ExceptionBody exBody = new ExceptionBody(ex.getMessage());
+//        exBody.setErrors(Map.of("Ошибка авторизации:", "Вы не имеете доступа к данному объекту"));
+//        return exBody;
+//    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionBody handleAuthenticationException(Exception ex) {
+        return new ExceptionBody("Authentication failed. " + ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)

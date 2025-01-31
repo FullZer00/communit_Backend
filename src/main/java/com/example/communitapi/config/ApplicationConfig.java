@@ -2,6 +2,11 @@ package com.example.communitapi.config;
 
 import com.example.communitapi.web.security.JwtTokenFilter;
 import com.example.communitapi.web.security.JwtTokenProvider;
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -42,6 +47,25 @@ public class ApplicationConfig {
     }
 
     @Bean
+    public OpenAPI openAPI() {
+        return new OpenAPI()
+                .addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
+                .components(new Components()
+                        .addSecuritySchemes("bearerAuth",
+                                new SecurityScheme()
+                                        .type(SecurityScheme.Type.HTTP)
+                                        .scheme("bearer")
+                                        .bearerFormat("JWT")
+                        )
+                )
+                .info(new Info()
+                        .title("Communit API")
+                        .description("")
+                        .version("1.0")
+                );
+    }
+
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
@@ -61,7 +85,8 @@ public class ApplicationConfig {
                 .authorizeHttpRequests(authorizeRequest -> {
                     authorizeRequest.requestMatchers(apiPath  + "/auth/**").permitAll()
                             .requestMatchers(apiPath+ "/client/**").hasRole("CLIENT")
-                            .anyRequest().permitAll();
+                            .requestMatchers("/swagger-ui/**", "v3/api-docs/**").permitAll()
+                            .anyRequest().authenticated();
                 })
                 .anonymous(AbstractHttpConfigurer::disable)
                 .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);

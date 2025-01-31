@@ -4,6 +4,7 @@ import com.example.communitapi.entities.client.Client;
 import com.example.communitapi.service.ClientService;
 import com.example.communitapi.web.dto.client.ClientDto;
 import com.example.communitapi.web.mappers.ClientMapper;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("${api.path}/clients")
 @RequiredArgsConstructor
+@Tag(name = "Clients Controller", description = "Clients API")
 @Validated
 public class ClientController {
 

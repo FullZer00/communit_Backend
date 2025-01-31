@@ -8,6 +8,7 @@ import com.example.communitapi.web.dto.project.ProjectDto;
 import com.example.communitapi.web.dto.worker.WorkerDto;
 import com.example.communitapi.web.mappers.ProjectMapper;
 import com.example.communitapi.web.mappers.WorkerMapper;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("${api.path}/projects")
 @Validated
+@Tag(name = "Project Controller", description = "Projects API")
 @RequiredArgsConstructor
 public class ProjectController {
 

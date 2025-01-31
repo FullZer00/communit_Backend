@@ -6,6 +6,7 @@ import com.example.communitapi.web.dto.validation.OnCreate;
 import com.example.communitapi.web.dto.validation.OnUpdate;
 import com.example.communitapi.web.dto.worker.WorkerDto;
 import com.example.communitapi.web.mappers.WorkerMapper;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -16,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("${api.path}/workers")
 @RequiredArgsConstructor
+@Tag(name = "Worker Controller", description = "Workers API")
 @Validated
 public class WorkerController {
 

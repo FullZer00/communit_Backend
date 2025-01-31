@@ -1,0 +1,194 @@
+2025-01-31T13:09:41.875+03:00  INFO 21420 --- [communitAPI] [main] c.e.communitapi.CommunitApiApplication   : Starting CommunitApiApplication using Java 23.0.1 with PID 21420 (C:\Users\gnusa\Desktop\IS_COMMUNIT\dev\communitAPI\target\classes started by gnusa in C:\Users\gnusa\Desktop\IS_COMMUNIT\dev\communitAPI)
+2025-01-31T13:09:41.877+03:00  INFO 21420 --- [communitAPI] [main] c.e.communitapi.CommunitApiApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-01-31T13:09:42.491+03:00  INFO 21420 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-31T13:09:42.492+03:00  INFO 21420 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-01-31T13:09:42.512+03:00  INFO 21420 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 0 JDBC repository interfaces.
+2025-01-31T13:09:42.520+03:00  INFO 21420 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-31T13:09:42.521+03:00  INFO 21420 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-31T13:09:42.529+03:00  INFO 21420 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-01-31T13:09:42.854+03:00  INFO 21420 --- [communitAPI] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-01-31T13:09:42.864+03:00  INFO 21420 --- [communitAPI] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-31T13:09:42.865+03:00  INFO 21420 --- [communitAPI] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2025-01-31T13:09:42.901+03:00  INFO 21420 --- [communitAPI] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-31T13:09:42.901+03:00  INFO 21420 --- [communitAPI] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 987 ms
+2025-01-31T13:09:42.995+03:00  INFO 21420 --- [communitAPI] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-31T13:09:43.123+03:00  INFO 21420 --- [communitAPI] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@54ccb3
+2025-01-31T13:09:43.124+03:00  INFO 21420 --- [communitAPI] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-31T13:09:43.277+03:00  INFO 21420 --- [communitAPI] [main] liquibase.changelog                      : Reading resource: liquibase/changesets/V1__init.sql
+2025-01-31T13:09:43.343+03:00  INFO 21420 --- [communitAPI] [main] liquibase.changelog                      : Reading from communit.databasechangelog
+2025-01-31T13:09:43.398+03:00  INFO 21420 --- [communitAPI] [main] liquibase.changelog                      : Reading resource: liquibase/changesets/V2__insert_data.sql
+2025-01-31T13:09:43.427+03:00  INFO 21420 --- [communitAPI] [main] liquibase.ui                             : Database is up to date, no changesets to execute
+2025-01-31T13:09:43.428+03:00  INFO 21420 --- [communitAPI] [main] liquibase.changelog                      : Reading from communit.databasechangelog
+2025-01-31T13:09:43.434+03:00  INFO 21420 --- [communitAPI] [main] liquibase.util                           : UPDATE SUMMARY
+2025-01-31T13:09:43.434+03:00  INFO 21420 --- [communitAPI] [main] liquibase.util                           : Run:                          0
+2025-01-31T13:09:43.434+03:00  INFO 21420 --- [communitAPI] [main] liquibase.util                           : Previously run:               2
+2025-01-31T13:09:43.435+03:00  INFO 21420 --- [communitAPI] [main] liquibase.util                           : Filtered out:                 0
+2025-01-31T13:09:43.435+03:00  INFO 21420 --- [communitAPI] [main] liquibase.util                           : -------------------------------
+2025-01-31T13:09:43.435+03:00  INFO 21420 --- [communitAPI] [main] liquibase.util                           : Total change sets:            2
+2025-01-31T13:09:43.435+03:00  INFO 21420 --- [communitAPI] [main] liquibase.util                           : Update summary generated
+2025-01-31T13:09:43.436+03:00  INFO 21420 --- [communitAPI] [main] liquibase.command                        : Command execution complete
+2025-01-31T13:09:43.796+03:00  INFO 21420 --- [communitAPI] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-31T13:09:43.831+03:00  INFO 21420 --- [communitAPI] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-01-31T13:09:43.854+03:00  INFO 21420 --- [communitAPI] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-31T13:09:44.060+03:00  INFO 21420 --- [communitAPI] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-31T13:09:44.337+03:00  INFO 21420 --- [communitAPI] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-31T13:09:44.340+03:00  INFO 21420 --- [communitAPI] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-31T13:09:44.536+03:00  INFO 21420 --- [communitAPI] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name jwtUserDetailService
+2025-01-31T13:09:44.594+03:00  WARN 21420 --- [communitAPI] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-31T13:09:45.081+03:00  INFO 21420 --- [communitAPI] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-01-31T13:09:45.086+03:00  INFO 21420 --- [communitAPI] [main] c.e.communitapi.CommunitApiApplication   : Started CommunitApiApplication in 3.516 seconds (process running for 3.922)
+2025-01-31T13:09:52.990+03:00  INFO 21420 --- [communitAPI] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-31T13:09:52.990+03:00  INFO 21420 --- [communitAPI] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-31T13:09:52.991+03:00  INFO 21420 --- [communitAPI] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-01-31T13:09:56.741+03:00  INFO 21420 --- [communitAPI] [http-nio-8080-exec-5] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 603 ms
+2025-01-31T13:11:35.364+03:00  INFO 21420 --- [communitAPI] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-31T13:11:35.366+03:00  INFO 21420 --- [communitAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-31T13:11:35.368+03:00  INFO 21420 --- [communitAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-31T13:11:46.815+03:00  INFO 19920 --- [communitAPI] [main] c.e.communitapi.CommunitApiApplication   : Starting CommunitApiApplication using Java 23.0.1 with PID 19920 (C:\Users\gnusa\Desktop\IS_COMMUNIT\dev\communitAPI\target\classes started by gnusa in C:\Users\gnusa\Desktop\IS_COMMUNIT\dev\communitAPI)
+2025-01-31T13:11:46.816+03:00  INFO 19920 --- [communitAPI] [main] c.e.communitapi.CommunitApiApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-01-31T13:11:47.373+03:00  WARN 19920 --- [communitAPI] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: java.lang.IllegalStateException: Error processing condition on org.springdoc.webmvc.ui.SwaggerConfig.springWebProvider
+2025-01-31T13:11:47.378+03:00  INFO 19920 --- [communitAPI] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-01-31T13:11:47.396+03:00 ERROR 19920 --- [communitAPI] [main] o.s.boot.SpringApplication               : Application run failed
+
+java.lang.IllegalStateException: Error processing condition on org.springdoc.webmvc.ui.SwaggerConfig.springWebProvider
+	at org.springframework.boot.autoconfigure.condition.SpringBootCondition.matches(SpringBootCondition.java:60) ~[spring-boot-autoconfigure-3.3.5.jar:3.3.5]
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:108) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForBeanMethod(ConfigurationClassBeanDefinitionReader.java:183) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:144) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:120) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:429) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:290) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:789) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:607) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352) ~[spring-boot-3.3.5.jar:3.3.5]
+	at com.example.communitapi.CommunitApiApplication.main(CommunitApiApplication.java:13) ~[classes/:na]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [org.springdoc.webmvc.ui.SwaggerConfig] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@2c7b84de]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483) ~[spring-core-6.1.14.jar:6.1.14]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:360) ~[spring-core-6.1.14.jar:6.1.14]
+	at org.springframework.util.ReflectionUtils.getUniqueDeclaredMethods(ReflectionUtils.java:417) ~[spring-core-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.lambda$getTypeForFactoryMethod$1(AbstractAutowireCapableBeanFactory.java:750) ~[spring-beans-6.1.14.jar:6.1.14]
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1713) ~[na:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryMethod(AbstractAutowireCapableBeanFactory.java:749) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineTargetType(AbstractAutowireCapableBeanFactory.java:682) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:653) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1687) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:562) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:534) ~[spring-beans-6.1.14.jar:6.1.14]
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.collectBeanNamesForType(OnBeanCondition.java:247) ~[spring-boot-autoconfigure-3.3.5.jar:3.3.5]
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getBeanNamesForType(OnBeanCondition.java:240) ~[spring-boot-autoconfigure-3.3.5.jar:3.3.5]
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getBeanNamesForType(OnBeanCondition.java:230) ~[spring-boot-autoconfigure-3.3.5.jar:3.3.5]
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getMatchingBeans(OnBeanCondition.java:183) ~[spring-boot-autoconfigure-3.3.5.jar:3.3.5]
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getMatchOutcome(OnBeanCondition.java:158) ~[spring-boot-autoconfigure-3.3.5.jar:3.3.5]
+	at org.springframework.boot.autoconfigure.condition.SpringBootCondition.matches(SpringBootCondition.java:47) ~[spring-boot-autoconfigure-3.3.5.jar:3.3.5]
+	... 17 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: org/springdoc/webmvc/core/providers/SpringWebMvcProvider
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3650) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2735) ~[na:na]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465) ~[spring-core-6.1.14.jar:6.1.14]
+	... 33 common frames omitted
+Caused by: java.lang.ClassNotFoundException: org.springdoc.webmvc.core.providers.SpringWebMvcProvider
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528) ~[na:na]
+	... 37 common frames omitted
+
+2025-01-31T13:14:02.575+03:00  INFO 22896 --- [communitAPI] [main] c.e.communitapi.CommunitApiApplication   : Starting CommunitApiApplication using Java 23.0.1 with PID 22896 (C:\Users\gnusa\Desktop\IS_COMMUNIT\dev\communitAPI\target\classes started by gnusa in C:\Users\gnusa\Desktop\IS_COMMUNIT\dev\communitAPI)
+2025-01-31T13:14:02.577+03:00  INFO 22896 --- [communitAPI] [main] c.e.communitapi.CommunitApiApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-01-31T13:14:03.263+03:00  INFO 22896 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-31T13:14:03.264+03:00  INFO 22896 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-01-31T13:14:03.280+03:00  INFO 22896 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 0 JDBC repository interfaces.
+2025-01-31T13:14:03.287+03:00  INFO 22896 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-31T13:14:03.287+03:00  INFO 22896 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-31T13:14:03.296+03:00  INFO 22896 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 JPA repository interfaces.
+2025-01-31T13:14:03.636+03:00  INFO 22896 --- [communitAPI] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-01-31T13:14:03.651+03:00  INFO 22896 --- [communitAPI] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-31T13:14:03.651+03:00  INFO 22896 --- [communitAPI] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2025-01-31T13:14:03.706+03:00  INFO 22896 --- [communitAPI] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-31T13:14:03.707+03:00  INFO 22896 --- [communitAPI] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1076 ms
+2025-01-31T13:14:03.808+03:00  INFO 22896 --- [communitAPI] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-31T13:14:03.962+03:00  INFO 22896 --- [communitAPI] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2ce524d2
+2025-01-31T13:14:03.963+03:00  INFO 22896 --- [communitAPI] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-31T13:14:04.114+03:00  INFO 22896 --- [communitAPI] [main] liquibase.changelog                      : Reading resource: liquibase/changesets/V1__init.sql
+2025-01-31T13:14:04.185+03:00  INFO 22896 --- [communitAPI] [main] liquibase.changelog                      : Reading from communit.databasechangelog
+2025-01-31T13:14:04.239+03:00  INFO 22896 --- [communitAPI] [main] liquibase.changelog                      : Reading resource: liquibase/changesets/V2__insert_data.sql
+2025-01-31T13:14:04.270+03:00  INFO 22896 --- [communitAPI] [main] liquibase.ui                             : Database is up to date, no changesets to execute
+2025-01-31T13:14:04.271+03:00  INFO 22896 --- [communitAPI] [main] liquibase.changelog                      : Reading from communit.databasechangelog
+2025-01-31T13:14:04.277+03:00  INFO 22896 --- [communitAPI] [main] liquibase.util                           : UPDATE SUMMARY
+2025-01-31T13:14:04.277+03:00  INFO 22896 --- [communitAPI] [main] liquibase.util                           : Run:                          0
+2025-01-31T13:14:04.277+03:00  INFO 22896 --- [communitAPI] [main] liquibase.util                           : Previously run:               2
+2025-01-31T13:14:04.277+03:00  INFO 22896 --- [communitAPI] [main] liquibase.util                           : Filtered out:                 0
+2025-01-31T13:14:04.277+03:00  INFO 22896 --- [communitAPI] [main] liquibase.util                           : -------------------------------
+2025-01-31T13:14:04.277+03:00  INFO 22896 --- [communitAPI] [main] liquibase.util                           : Total change sets:            2
+2025-01-31T13:14:04.278+03:00  INFO 22896 --- [communitAPI] [main] liquibase.util                           : Update summary generated
+2025-01-31T13:14:04.279+03:00  INFO 22896 --- [communitAPI] [main] liquibase.command                        : Command execution complete
+2025-01-31T13:14:04.635+03:00  INFO 22896 --- [communitAPI] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-31T13:14:04.672+03:00  INFO 22896 --- [communitAPI] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-01-31T13:14:04.697+03:00  INFO 22896 --- [communitAPI] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-31T13:14:04.895+03:00  INFO 22896 --- [communitAPI] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-31T13:14:05.207+03:00  INFO 22896 --- [communitAPI] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-31T13:14:05.211+03:00  INFO 22896 --- [communitAPI] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-31T13:14:05.456+03:00  INFO 22896 --- [communitAPI] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name jwtUserDetailService
+2025-01-31T13:14:05.527+03:00  WARN 22896 --- [communitAPI] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-31T13:14:06.102+03:00  INFO 22896 --- [communitAPI] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-01-31T13:14:06.109+03:00  INFO 22896 --- [communitAPI] [main] c.e.communitapi.CommunitApiApplication   : Started CommunitApiApplication in 3.942 seconds (process running for 4.619)
+2025-01-31T13:14:42.388+03:00  INFO 22896 --- [communitAPI] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-31T13:14:42.388+03:00  INFO 22896 --- [communitAPI] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-31T13:14:42.389+03:00  INFO 22896 --- [communitAPI] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-01-31T13:16:46.254+03:00  INFO 22896 --- [communitAPI] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-31T13:16:46.256+03:00  INFO 22896 --- [communitAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-31T13:16:46.257+03:00  INFO 22896 --- [communitAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-31T13:16:48.543+03:00  INFO 26400 --- [communitAPI] [main] c.e.communitapi.CommunitApiApplication   : Starting CommunitApiApplication using Java 23.0.1 with PID 26400 (C:\Users\gnusa\Desktop\IS_COMMUNIT\dev\communitAPI\target\classes started by gnusa in C:\Users\gnusa\Desktop\IS_COMMUNIT\dev\communitAPI)
+2025-01-31T13:16:48.544+03:00  INFO 26400 --- [communitAPI] [main] c.e.communitapi.CommunitApiApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-01-31T13:16:49.127+03:00  INFO 26400 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-31T13:16:49.128+03:00  INFO 26400 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-01-31T13:16:49.143+03:00  INFO 26400 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 0 JDBC repository interfaces.
+2025-01-31T13:16:49.150+03:00  INFO 26400 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-31T13:16:49.151+03:00  INFO 26400 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-31T13:16:49.158+03:00  INFO 26400 --- [communitAPI] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2025-01-31T13:16:49.499+03:00  INFO 26400 --- [communitAPI] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-01-31T13:16:49.508+03:00  INFO 26400 --- [communitAPI] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-31T13:16:49.509+03:00  INFO 26400 --- [communitAPI] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2025-01-31T13:16:49.548+03:00  INFO 26400 --- [communitAPI] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-31T13:16:49.548+03:00  INFO 26400 --- [communitAPI] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 967 ms
+2025-01-31T13:16:49.642+03:00  INFO 26400 --- [communitAPI] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-31T13:16:49.773+03:00  INFO 26400 --- [communitAPI] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6b42e36d
+2025-01-31T13:16:49.776+03:00  INFO 26400 --- [communitAPI] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-31T13:16:49.914+03:00  INFO 26400 --- [communitAPI] [main] liquibase.changelog                      : Reading resource: liquibase/changesets/V1__init.sql
+2025-01-31T13:16:49.976+03:00  INFO 26400 --- [communitAPI] [main] liquibase.changelog                      : Reading from communit.databasechangelog
+2025-01-31T13:16:50.031+03:00  INFO 26400 --- [communitAPI] [main] liquibase.changelog                      : Reading resource: liquibase/changesets/V2__insert_data.sql
+2025-01-31T13:16:50.061+03:00  INFO 26400 --- [communitAPI] [main] liquibase.ui                             : Database is up to date, no changesets to execute
+2025-01-31T13:16:50.063+03:00  INFO 26400 --- [communitAPI] [main] liquibase.changelog                      : Reading from communit.databasechangelog
+2025-01-31T13:16:50.069+03:00  INFO 26400 --- [communitAPI] [main] liquibase.util                           : UPDATE SUMMARY
+2025-01-31T13:16:50.069+03:00  INFO 26400 --- [communitAPI] [main] liquibase.util                           : Run:                          0
+2025-01-31T13:16:50.069+03:00  INFO 26400 --- [communitAPI] [main] liquibase.util                           : Previously run:               2
+2025-01-31T13:16:50.069+03:00  INFO 26400 --- [communitAPI] [main] liquibase.util                           : Filtered out:                 0
+2025-01-31T13:16:50.069+03:00  INFO 26400 --- [communitAPI] [main] liquibase.util                           : -------------------------------
+2025-01-31T13:16:50.069+03:00  INFO 26400 --- [communitAPI] [main] liquibase.util                           : Total change sets:            2
+2025-01-31T13:16:50.070+03:00  INFO 26400 --- [communitAPI] [main] liquibase.util                           : Update summary generated
+2025-01-31T13:16:50.070+03:00  INFO 26400 --- [communitAPI] [main] liquibase.command                        : Command execution complete
+2025-01-31T13:16:50.426+03:00  INFO 26400 --- [communitAPI] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-31T13:16:50.462+03:00  INFO 26400 --- [communitAPI] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-01-31T13:16:50.484+03:00  INFO 26400 --- [communitAPI] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-31T13:16:50.672+03:00  INFO 26400 --- [communitAPI] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-31T13:16:50.932+03:00  INFO 26400 --- [communitAPI] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-31T13:16:50.935+03:00  INFO 26400 --- [communitAPI] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-31T13:16:51.132+03:00  INFO 26400 --- [communitAPI] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name jwtUserDetailService
+2025-01-31T13:16:51.192+03:00  WARN 26400 --- [communitAPI] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-31T13:16:51.639+03:00  INFO 26400 --- [communitAPI] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-01-31T13:16:51.646+03:00  INFO 26400 --- [communitAPI] [main] c.e.communitapi.CommunitApiApplication   : Started CommunitApiApplication in 3.406 seconds (process running for 3.813)
+2025-01-31T13:16:56.601+03:00  INFO 26400 --- [communitAPI] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-31T13:16:56.602+03:00  INFO 26400 --- [communitAPI] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-31T13:16:56.603+03:00  INFO 26400 --- [communitAPI] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-01-31T13:18:11.631+03:00  INFO 26400 --- [communitAPI] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-31T13:18:11.633+03:00  INFO 26400 --- [communitAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-31T13:18:11.635+03:00  INFO 26400 --- [communitAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

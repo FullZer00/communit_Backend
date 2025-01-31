@@ -25,10 +25,10 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public JwtResponse login(JwtRequest loginRequest) {
-        // authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
         UserData userData = userDataService.getUserByEmail(loginRequest.getEmail());
         if (!passwordService.checkPassword(loginRequest.getPassword(), userData.getPassword())) {
-            throw new BadCredentialsException("Login or password incorrect");
+            throw new BadCredentialsException("Password is incorrect");
         }
         return new JwtResponse(
                 userData.getId(),
